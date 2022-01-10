@@ -1,0 +1,15 @@
+# cria producer
+kafka-console-producer --topic=teste --bootstrap-server=localhost:9092
+
+#cria o consumer
+kafka-console-consumer --topic=teste --bootstrap-server=localhost:9092
+
+#consumer options:
+#lê todas as msgs que n foram lidas enquanto ele estava off
+--from-beginning
+
+#informa o grupo do consumidor
+--group=x
+
+#informações sobre o grupo específico
+kafka-consumer-groups --bootstrap-server=localhost:9092 --group=x --describe

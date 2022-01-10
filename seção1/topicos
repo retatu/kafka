@@ -1,0 +1,8 @@
+#cria um tópico
+kafka-topics --create --topic=teste --bootstrap-server=localhost:9092 --partitions=3
+
+#lista os tópico
+kafka-topics --list --bootstrap-server=localhost:9092
+
+#descreve as informações do tópico
+kafka-topics --describe --topic=teste --bootstrap-server=localhost:9092
