@@ -11,5 +11,5 @@ kafka-console-consumer --topic=teste --bootstrap-server=localhost:9092
 #informa o grupo do consumidor
 --group=x
 
-#informações sobre o grupo específico
+#informações sobre o grupo específico. Mostra: partição que está lendo, off set atual, off set total, lag (diferença entre os offsets), ID, hosts, e o 
 kafka-consumer-groups --bootstrap-server=localhost:9092 --group=x --describe
