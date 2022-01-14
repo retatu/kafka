@@ -31,9 +31,10 @@ func main() {
 func NewKafkaProducer() *kafka.Producer {
 	configMap := &kafka.ConfigMap{
 		"bootstrap.servers":   "host.docker.internal:9094",
-		"delivery.timeout.ms": "0",    //tempo máximo de entrega de uma msg, 0 é infinito
-		"acks":                "all",  //acknowledge: 0, 1 e all. 0 sem retorno, 1 retorno qd o lider recebe, all qd todas as replicações recebem
-		"enable.idempotence":  "true", //producor indepotente ou não. Se utilizar como true, o acks precisa ser ALL
+		"delivery.timeout.ms": "0",              //tempo máximo de entrega de uma msg, 0 é infinito
+		"acks":                "all",            //acknowledge: 0, 1 e all. 0 sem retorno, 1 retorno qd o lider recebe, all qd todas as replicações recebem
+		"enable.idempotence":  "true",           //producor indepotente ou não. Se utilizar como true, o acks precisa ser ALL
+		"client.id":           "goapp-producer", //quem está produzindo esse tópico
 	}
 	p, err := kafka.NewProducer(configMap)
 	if err != nil {
