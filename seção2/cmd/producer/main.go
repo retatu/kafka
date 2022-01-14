@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -10,7 +11,9 @@ import (
 func main() {
 	deliveryChan := make(chan kafka.Event)
 	producer := NewKafkaProducer()
-	Publish("message", "teste", producer, nil, deliveryChan)
+	Publish("transferiu", "teste", producer, []byte("Transferência"), deliveryChan) // com a key (3 parâmetro) a msg vai cair sempre na msm partição
+	go DeliveryReport(deliveryChan)
+	time.Sleep(2 * time.Second)
 
 	// //sincrono
 	// e := <-deliveryChan
@@ -23,8 +26,6 @@ func main() {
 	// }
 
 	//assincrono
-	go DeliveryReport(deliveryChan)
-	producer.Flush(2000)
 }
 
 func NewKafkaProducer() *kafka.Producer {
